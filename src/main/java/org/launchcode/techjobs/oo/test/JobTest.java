@@ -64,16 +64,12 @@ public class JobTest {
 
     @Test
     public void testToStringHandlesEmptyField(){
-        Job test = new Job();
-        test.setEmployer(new Employer("PortaFab"));
-        test.setLocation(new Location("Chesterfield, MO"));
-        test.setPositionType(new PositionType("Slave"));
-        test.setCoreCompetency(new CoreCompetency("Obedience"));
+        Job test = new Job("",new Employer("PortaFab"), new Location("Chesterfield, MO"), new PositionType(), new CoreCompetency("Obedience"));
         String part1 = "ID: 1";
         String part2 = "Name: Data not available";
         String part3 = "Employer: PortaFab";
         String part4 = "Location: Chesterfield, MO";
-        String part5 = "Position Type: Slave";
+        String part5 = "Position Type: Data not available";
         String part6 = "Core Competency: Obedience";
         String expected = "\n"+part1+"\n"+part2+"\n"+part3+"\n"+part4+"\n"+part5+"\n"+part6+"\n";
         assertEquals(test.toString(), expected);
@@ -84,5 +80,19 @@ public class JobTest {
         Job test555 = new Job();
         String error = "\nOOPS! This job does not seem to exist.\n";
         assertTrue(test555.toString() == error);
+    }
+
+    @Test
+    public void testToStringHandlesPartiallyFilledObject(){
+        Job test = new Job();
+        test.setName("Web Developer");
+        String part1 = "ID: 1";
+        String part2 = "Name: Web Developer";
+        String part3 = "Employer: Data not available";
+        String part4 = "Location: Data not available";
+        String part5 = "Position Type: Data not available";
+        String part6 = "Core Competency: Data not available";
+        String expected = "\n"+part1+"\n"+part2+"\n"+part3+"\n"+part4+"\n"+part5+"\n"+part6+"\n";
+        assertEquals(test.toString(), expected);
     }
 }

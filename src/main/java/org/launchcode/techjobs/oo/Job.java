@@ -33,19 +33,21 @@ public class Job {
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
-//    public static void main(String[] args){
-//        Job test = new Job();
-//        boolean check = Stream.of(test.getName(), test.getEmployer(), test.getLocation(), test.getPositionType(), test.getCoreCompetency()).allMatch(Objects::isNull);
-//        System.out.println(check);
-//        System.out.println(test.getEmployer().getValue());
-//    }
+    public static void main(String[] args){
+        Job test = new Job("",new Employer("PortaFab"), new Location("Chesterfield, MO"), new PositionType(), new CoreCompetency("Obedience"));
+        Job test2 = new Job();
+        Job test3 = new Job();
+        test3.setName("Web Developer");
+        System.out.println(test.toString());
+        System.out.println(test2.toString());
+        System.out.println(test3.toString());
+    }
 
     @Override
     public String toString() {
-        String output;
         boolean check = Stream.of(this.getName(), this.getEmployer(), this.getLocation(), this.getPositionType(), this.getCoreCompetency()).allMatch(Objects::isNull);
         if(check){
-            output = "\nOOPS! This job does not seem to exist.\n";
+            return "\nOOPS! This job does not seem to exist.\n";
         } else {
             String errorMessage = "Data not available";
             String part1 = String.format("ID: %s", this.getId());
@@ -54,34 +56,44 @@ public class Job {
             String part4;
             String part5;
             String part6;
-            if (this.getName() != null) {
+            String output;
+            if(Objects.isNull(this.getName())){
+                part2 = String.format("Name: %s", errorMessage);
+            } else if (this.getName() != null && !this.getName().isEmpty()) {
                 part2 = String.format("Name: %s", this.getName());
             } else {
                 part2 = String.format("Name: %s", errorMessage);
             }
-            if (this.getEmployer().getValue() != null) {
+            if(Objects.isNull(this.getEmployer())){
+                part3 = String.format("Employer: %s", errorMessage);
+            } else if (this.getEmployer().getValue() != null && !this.getEmployer().getValue().isEmpty()) {
                 part3 = String.format("Employer: %s", this.getEmployer().getValue());
             } else {
                 part3 = String.format("Employer: %s", errorMessage);
             }
-            if (this.getLocation().getValue() != null) {
+            if(Objects.isNull(this.getLocation())){
+                part4 = String.format("Location: %s", errorMessage);
+            } else if (this.getLocation().getValue() != null && !this.getLocation().getValue().isEmpty()) {
                 part4 = String.format("Location: %s", this.getLocation().getValue());
             } else {
                 part4 = String.format("Location: %s", errorMessage);
             }
-            if (this.getPositionType().getValue() != null) {
+            if(Objects.isNull(this.getPositionType())){
+                part5 = String.format("Position Type: %s", errorMessage);
+            } else if (this.getPositionType().getValue() != null && !this.getPositionType().getValue().isEmpty()) {
                 part5 = String.format("Position Type: %s", this.getPositionType().getValue());
             } else {
                 part5 = String.format("Position Type: %s", errorMessage);
             }
-            if (this.getCoreCompetency().getValue() != null) {
+            if(Objects.isNull(this.getCoreCompetency())){
+                part6 = String.format("Core Competency: %s", errorMessage);
+            } else if (this.getCoreCompetency().getValue() != null && !this.getCoreCompetency().getValue().isEmpty()) {
                 part6 = String.format("Core Competency: %s", this.getCoreCompetency().getValue());
             } else {
                 part6 = String.format("Core Competency: %s", errorMessage);
             }
-            output = "\n" + part1 + "\n" + part2 + "\n" + part3 + "\n" + part4 + "\n" + part5 + "\n" + part6 + "\n";
+            return "\n" + part1 + "\n" + part2 + "\n" + part3 + "\n" + part4 + "\n" + part5 + "\n" + part6 + "\n";
         }
-        return output;
     }
 
     @Override
