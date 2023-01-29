@@ -33,15 +33,6 @@ public class Job {
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
-    public static void main(String[] args){
-        Job test = new Job("",new Employer("PortaFab"), new Location("Chesterfield, MO"), new PositionType(), new CoreCompetency("Obedience"));
-        Job test2 = new Job();
-        Job test3 = new Job();
-        test3.setName("Web Developer");
-        System.out.println(test.toString());
-        System.out.println(test2.toString());
-        System.out.println(test3.toString());
-    }
 
     @Override
     public String toString() {
